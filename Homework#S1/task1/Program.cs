@@ -3,5 +3,19 @@
 // a = 2 b = 10 -> max = 10
 // a = -9 b = -3 -> max = -3
 
-Console.WriteLine("Введите число");
-int num1 = Int.Parse(Console.ReadLine());
+Console.WriteLine("Введите первое число");
+int num1 = int.Parse(Console.ReadLine());
+Console.WriteLine("Введите второе число");
+int num2 = int.Parse(Console.ReadLine());
+if (num1 > num2)
+{
+    Console.WriteLine("число " + num1 + " больше");
+}
+else if (num1 < num2)
+{
+    Console.WriteLine("число " + num2 + " больше");
+}
+else
+{
+    Console.WriteLine("Введенные числа равны.");
+}
