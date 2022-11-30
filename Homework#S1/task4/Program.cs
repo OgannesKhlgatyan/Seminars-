@@ -6,13 +6,13 @@ Console.WriteLine("Введите число");
 int N = int.Parse(Console.ReadLine());
 if (N > 0)
 {
-    for (int num = 0; num < N; num += 2) // Почему вывел с 0, потому что 0 - это тоже четное число.
+    for (int num = 2; num < N; num += 2) 
     {
         Console.WriteLine(num);
     }
 }
 else
-for (int num = -2; num > N; num -= 2) // Почему не вывел 0, потому что 0 - это тоже положительное число. А это цикл для отрицательных
+for (int num = -2; num > N; num -= 2)
     {
         Console.WriteLine(num);
     }
