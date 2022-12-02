@@ -4,10 +4,15 @@
 // 22 3 9 -> 22
 
 Console.WriteLine("Введите три числа, а я найду максимальное.");
-int[] n = new int[3];
-n[0] = int.Parse(Console.ReadLine());
-n[1] = int.Parse(Console.ReadLine());
-n[2] = int.Parse(Console.ReadLine());
+int[] n = new int[int.Parse(Console.ReadLine())];
+// n[0] = int.Parse(Console.ReadLine());
+// n[1] = int.Parse(Console.ReadLine());
+// n[2] = int.Parse(Console.ReadLine());
+
+for (int i =0; i<n.Length; i++)
+{
+    n[i] = int.Parse(Console.ReadLine());
+}
 int max = n[0];
 
 if (max > n[1])
