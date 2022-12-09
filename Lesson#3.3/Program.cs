@@ -17,10 +17,14 @@ int[] GetCalculateTheSquaresOfnumbers(int N)
     return array;
 }
 
-void PrintArray(int []array)
+void PrintArray(int[] array)
 {
-    for (int i = 0; i< array.Length; i++)
+    Console.Write("[");
+    for (var i = 0; i < array.Length-1; i++)
     {
-        Console.WriteLine(array[i]);
+        Console.Write($"{array[i]},");
     }
+    Console.Write(array[array.Length-1]);
+    Console.Write("]");
 }
+
