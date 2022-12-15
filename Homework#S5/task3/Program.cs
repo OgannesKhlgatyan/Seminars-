@@ -5,16 +5,16 @@
 int[] array = CreateRandomArray(6, 0, 15);
 PrintArray(array, "Random Array");
 
-(int, int, int) result = CountingEvenAndOddPosition(array);
+(int, int, int) result = CalculationDifferenceMaxAndMin(array);
 Console.WriteLine("Max number = " + result.Item1);
 Console.WriteLine("Min number = " + result.Item2);
 Console.WriteLine("difference Max and Min = " + result.Item3);
 
-(int, int, int) CountingEvenAndOddPosition(int[] array)
+(int, int, int) CalculationDifferenceMaxAndMin(int[] array)
 {
     int maxNumbers = array[0];
-    int minNumbers = array [1];
-    int differenceMaxMin =0;
+    int minNumbers = array[1];
+    int differenceMaxMin = 0;
 
     for (var i = 0; i < array.Length; i++)
     {
