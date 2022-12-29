@@ -67,4 +67,4 @@ int ReadInt(string title)  // Проверка m и n на число (что э
     }
 
     throw new Exception("Введены не корректные символы");
-}
+}  

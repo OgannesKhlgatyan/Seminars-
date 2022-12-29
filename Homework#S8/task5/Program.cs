@@ -5,7 +5,7 @@ int n = ReadInt("Введите количество столбцов: ");
 int[,] array = new int[m, n];
 FillSpiral(array);
 Print2DArray(array);
-
+ 
 void FillSpiral(int[,] array)
 {
     int startX = 0, finishX = array.GetLength(0) - 1,

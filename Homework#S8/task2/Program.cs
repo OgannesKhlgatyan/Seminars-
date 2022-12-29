@@ -15,7 +15,7 @@ try
     Print2DArray(array);
     int[] sumLine = SumLine(array);
     Console.WriteLine($"Наименьшая сумма элементов в строке {FindIndexMinElement(sumLine)}");
-
+ 
 }
 catch (Exception ex)
 {
