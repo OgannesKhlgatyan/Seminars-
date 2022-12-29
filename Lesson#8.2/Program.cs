@@ -1,9 +1,12 @@
-﻿// Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+﻿// Составить частотный словарь элементов двумерного массива. Частотный словарь содержит информацию о том, 
+// сколько раз встречается элемент входных данных.
+
+// 1, 2, 3 4, 6, 1 2, 1, 6
+// 1 встречается 3 раза
+// 2 встречается 2 раз
+// 3 встречается 1 раз
+// 4 встречается 1 раз
+// 6 встречается 2 раза
 
 try
 {
@@ -11,7 +14,7 @@ try
     int n = ReadInt("Введите n");
     int[,] array = Create2DArray(m, n);
     Print2DArray(array);
-    ArithmeticMeanByColumns(array);
+    MaxSummElemetsReturnLine(array);
 
 }
 catch (Exception ex)
@@ -20,18 +23,30 @@ catch (Exception ex)
 }
 
 
-void ArithmeticMeanByColumns(int[,] array)
+void MaxSummElemetsReturnLine(int[,] array)
 {
-    for (int i = 0; i < array.GetLength(1); i++)
+    int minRow = int.MaxValue;
+    int minRowIndex = 0;
+
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        double[] quantityJ = new double[array.GetLength(0)]; // собираем инфу по колличеству j, чтобы в методе Average посчитать среднее арифм.
-        for (int j = 0; j < array.GetLength(0); j++)
+        int rowSum = 0;
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            quantityJ[j] = array[j, i];
+            rowSum += array[i, j];
         }
-        Console.Write($"{Average(quantityJ)}, ");
+        if (rowSum < minRow)
+        {
+            minRowIndex = i;
+            minRow = rowSum;
+        }
+
     }
+    Console.WriteLine($"Строка с минимальной суммой элементов: {minRowIndex + 1}");
 }
+
+
+
 
 
 void Print2DArray(int[,] array)
@@ -58,7 +73,7 @@ int[,] Create2DArray(int m, int n)
     {
         for (var j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = random.Next(1, 10);
+            array[i, j] = random.Next(1, 15);
         }
     }
 
@@ -88,15 +103,5 @@ void PrintArray(int[] array)
     }
     Console.Write(array[array.Length - 1]);
     Console.Write("]");
-}
-
-double Average(double[] array)
-{
-    double arraySum = 0;
-    for (int i = 0; i < array.Length; i++)
-    {
-        arraySum += array[i];
-    }
-    return Math.Round((arraySum / array.Length), 2);
 }
 

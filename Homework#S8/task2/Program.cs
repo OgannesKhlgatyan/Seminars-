@@ -1,9 +1,11 @@
-﻿// Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+﻿// Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 // Например, задан массив:
+
 // 1 4 7 2
 // 5 9 2 3
 // 8 4 2 4
-// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+// 5 2 6 7
+// Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
 try
 {
@@ -11,7 +13,8 @@ try
     int n = ReadInt("Введите n");
     int[,] array = Create2DArray(m, n);
     Print2DArray(array);
-    ArithmeticMeanByColumns(array);
+    int[] sumLine = SumLine(array);
+    Console.WriteLine($"Наименьшая сумма элементов в строке {FindIndexMinElement(sumLine)}");
 
 }
 catch (Exception ex)
@@ -19,20 +22,34 @@ catch (Exception ex)
     Console.WriteLine(ex.Message);
 }
 
-
-void ArithmeticMeanByColumns(int[,] array)
+int FindIndexMinElement(int[] array)
 {
-    for (int i = 0; i < array.GetLength(1); i++)
+    int min = array[0];
+    int minIndex = 0;
+    for (int i = 1; i < array.Length; i++)
     {
-        double[] quantityJ = new double[array.GetLength(0)]; // собираем инфу по колличеству j, чтобы в методе Average посчитать среднее арифм.
-        for (int j = 0; j < array.GetLength(0); j++)
+        if (min > array[i])
         {
-            quantityJ[j] = array[j, i];
+            min = array[i];
+            minIndex = i;
         }
-        Console.Write($"{Average(quantityJ)}, ");
     }
+    return minIndex + 1;
 }
 
+int[] SumLine(int[,] array)
+{
+    int[] sum = new int[array.GetLength(0)];
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        sum[i] = 0;
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            sum[i] += array[i, j];
+        }
+    }
+    return sum;
+}
 
 void Print2DArray(int[,] array)
 {
@@ -58,7 +75,7 @@ int[,] Create2DArray(int m, int n)
     {
         for (var j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = random.Next(1, 10);
+            array[i, j] = random.Next(1, 5);
         }
     }
 
@@ -88,15 +105,5 @@ void PrintArray(int[] array)
     }
     Console.Write(array[array.Length - 1]);
     Console.Write("]");
-}
-
-double Average(double[] array)
-{
-    double arraySum = 0;
-    for (int i = 0; i < array.Length; i++)
-    {
-        arraySum += array[i];
-    }
-    return Math.Round((arraySum / array.Length), 2);
 }
 
